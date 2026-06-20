@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Residency - Luxury Resort Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-start">
+                    <p class="mb-0"><i class="fas fa-map-marker-alt"></i> Auroville, Puducherry, Tamil Nadu</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <p class="mb-0"><i class="fas fa-phone"></i> +91 98765 43210</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <p class="mb-0"><i class="fas fa-envelope"></i> info@glowresidency.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">GLOW</span>
+                <span class="brand-sub">RESIDENCY</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Amenities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item" id="authNav"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1551632786-de41ec084b5b?w=1200&h=800&fit=crop'); background-size: cover; background-position: center;">
+        <div class="hero-overlay">
+            <h1 class="hero-title">WELCOME TO</h1>
+            <h2 class="hero-main">GLOW RESIDENCY</h2>
+            <p class="hero-subtitle">Auroville, Puducherry</p>
+            <p class="hero-tagline">Experience Luxury, Embrace Serenity</p>
+            <button class="btn btn-gold btn-lg mt-4" onclick="document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' })">BOOK YOUR STAY</button>
+        </div>
+    </section>
+
+    <!-- Booking Search Section -->
+    <section id="booking-section" class="booking-search">
+        <div class="container">
+            <form class="booking-form">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-2">
+                        <label for="checkIn" class="form-label">Check In</label>
+                        <input type="date" class="form-control" id="checkIn" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="checkOut" class="form-label">Check Out</label>
+                        <input type="date" class="form-control" id="checkOut" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="guests" class="form-label">Guests</label>
+                        <select class="form-select" id="guests" required>
+                            <option selected>2 Guests</option>
+                            <option>1 Guest</option>
+                            <option>3 Guests</option>
+                            <option>4+ Guests</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="roomType" class="form-label">Room Type</label>
+                        <select class="form-select" id="roomType">
+                            <option selected>Select room</option>
+                            <option>Deluxe</option>
+                            <option>Suite</option>
+                            <option>Villa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-gold w-100" onclick="searchAvailability()">CHECK AVAILABILITY</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Our Rooms Section -->
+    <section class="py-5 bg-light-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-label">OUR ROOMS</span>
+                <h2 class="section-title">Comfort Meets Luxury</h2>
+            </div>
+            <div class="row" id="roomsContainer">
+                <!-- Rooms will be loaded here -->
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-dark">VIEW ALL ROOMS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-label">AMENITIES</span>
+                <h2 class="section-title">Everything for a Perfect Stay</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-water"></i></div>
+                    <h5>Swimming Pool</h5>
+                    <p class="small">Relax and unwind</p>
+                </div>
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
+                    <h5>Free WiFi</h5>
+                    <p class="small">Stay connected</p>
+                </div>
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-parking"></i></div>
+                    <h5>Free Parking</h5>
+                    <p class="small">Safe & secure</p>
+                </div>
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-snowflake"></i></div>
+                    <h5>AC Rooms</h5>
+                    <p class="small">Comfortable stay</p>
+                </div>
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-clock"></i></div>
+                    <h5>24/7 Service</h5>
+                    <p class="small">We are here for you</p>
+                </div>
+                <div class="col-md-4 col-lg-2 text-center">
+                    <div class="amenity-icon"><i class="fas fa-utensils"></i></div>
+                    <h5>Breakfast</h5>
+                    <p class="small">Delicious & fresh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="special-offer" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=300&fit=crop'); background-size: cover; background-position: center;">
+        <div class="container text-center">
+            <h2 class="offer-title">SPECIAL OFFER</h2>
+            <h3 class="offer-text">Get 15% Off On Your First Booking</h3>
+            <button class="btn btn-gold btn-lg mt-4">BOOK NOW</button>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-5 bg-light-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-label">GUESTS LOVE US</span>
+                <h2 class="section-title">What Our Guests Say</h2>
+            </div>
+            <div class="row g-4" id="reviewsContainer">
+                <!-- Reviews will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-label">GALLERY</span>
+                <h2 class="section-title">Glimpses Of Our Resort</h2>
+            </div>
+            <div class="row g-3" id="galleryContainer">
+                <!-- Gallery images will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5 bg-light-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <span class="section-label">ABOUT US</span>
+                    <h2 class="section-title">Your Home in Auroville</h2>
+                    <p>Glow Residency is a luxury resort in the heart of Auroville, Puducherry. We offer a perfect blend of modern comfort and natural beauty. Our resort is designed to give you a peaceful and memorable stay.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check-circle gold"></i> Luxury Rooms</li>
+                        <li><i class="fas fa-check-circle gold"></i> Tour Assistance</li>
+                        <li><i class="fas fa-check-circle gold"></i> Swimming Pool</li>
+                        <li><i class="fas fa-check-circle gold"></i> Best Hospitality</li>
+                        <li><i class="fas fa-check-circle gold"></i> Delicious Food</li>
+                        <li><i class="fas fa-check-circle gold"></i> Peaceful Environment</li>
+                    </ul>
+                    <button class="btn btn-gold mt-4">READ MORE</button>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&h=400&fit=crop" class="img-fluid rounded" alt="Resort">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h3 class="mb-4">GET IN TOUCH</h3>
+                        <div class="info-item mb-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <p>Auroville, Puducherry, Tamil Nadu 605101</p>
+                            </div>
+                        </div>
+                        <div class="info-item mb-4">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        <div class="info-item mb-4">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@glowresidency.com</p>
+                            </div>
+                        </div>
+                        <div class="social-links mt-4">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="map" style="width: 100%; height: 400px; border-radius: 8px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                        <p>Map will be loaded here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3">
+                    <h5 class="gold">GLOW RESIDENCY</h5>
+                    <p>Luxury resort offering world-class amenities and exceptional service.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="gold">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Rooms</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="gold">Policy</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Glow Residency. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">Designed with <i class="fas fa-heart gold"></i> by Glow Residency</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
